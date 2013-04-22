@@ -165,7 +165,7 @@ struct row_data {
 	unsigned int			cycle_flags;
 };
 
-#define RQ_ROWQ(rq) ((struct row_queue *) ((rq)->elevator_private[0]))
+#define RQ_ROWQ(rq) ((struct row_queue *) ((rq)->elevator_private[0])) 
 
 #define row_log(q, fmt, args...)   \
 	blk_add_trace_msg(q, "%s():" fmt , __func__, ##args)

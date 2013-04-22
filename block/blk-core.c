@@ -312,13 +312,13 @@ void __blk_run_queue(struct request_queue *q)
 		return;
 
 	if (!q->notified_urgent &&
-    q->elevator->type->ops.elevator_is_urgent_fn &&
-    q->urgent_request_fn &&
-    q->elevator->type->ops.elevator_is_urgent_fn(q)) {
-    q->notified_urgent = true;
-    q->urgent_request_fn(q);
-  } else
-    q->request_fn(q);
+		q->elevator->elevator_type->ops.elevator_is_urgent_fn && 
+		q->urgent_request_fn &&
+		q->elevator->elevator_type->ops.elevator_is_urgent_fn(q)) {
+			q->notified_urgent = true;
+			q->urgent_request_fn(q);
+	} else
+		q->request_fn(q);
 }
 EXPORT_SYMBOL(__blk_run_queue);
 
@@ -985,7 +985,7 @@ bool blk_reinsert_req_sup(struct request_queue *q)
 {
   if (unlikely(!q))
     return false;
-  return q->elevator->type->ops.elevator_reinsert_req_fn ? true : false;
+  return q->elevator->elevator_type->ops.elevator_reinsert_req_fn ? true : false; 
 }
 EXPORT_SYMBOL(blk_reinsert_req_sup);
 
