@@ -1977,6 +1977,8 @@ extern void idle_task_exit(void);
 static inline void idle_task_exit(void) {}
 #endif
 
+extern void force_cpu_resched(int cpu); 
+
 #if defined(CONFIG_NO_HZ) && defined(CONFIG_SMP)
 extern void wake_up_idle_cpu(int cpu);
 #else
